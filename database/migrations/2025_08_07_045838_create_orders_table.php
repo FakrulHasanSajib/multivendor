@@ -10,10 +10,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // অর্ডার দেওয়া ইউজার
-            $table->foreignId('vendor_id')->constrained()->onDelete('cascade'); // ভেন্ডার
-            $table->decimal('total_price', 10, 2);
-            $table->string('status')->default('pending');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('vendor_id')->constrained()->onDelete('cascade');
+            $table->decimal('total_amount', 8, 2);
+            $table->string('status')->default('pending'); // e.g., pending, processing, completed, cancelled
             $table->timestamps();
         });
     }

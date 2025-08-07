@@ -10,7 +10,6 @@ class CreateVendorsTable extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ইউজারের সাথে সম্পর্ক
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();

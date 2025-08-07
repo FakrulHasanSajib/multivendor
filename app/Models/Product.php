@@ -9,17 +9,24 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'vendor_id', 'name', 'description', 'price', 'stock', 'image',
+        'name',
+        'slug',
+        'description',
+        'price',
+        'vendor_id',
     ];
 
+    /**
+     * Get the vendor that owns the product.
+     */
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
-    }
-
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
     }
 }

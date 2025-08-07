@@ -9,22 +9,23 @@ class Vendor extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'user_id', 'name', 'email', 'phone', 'address',
+        'name',
+        'email',
+        'phone',
+        'address',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    /**
+     * Get the products for the vendor.
+     */
     public function products()
     {
         return $this->hasMany(Product::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
     }
 }
