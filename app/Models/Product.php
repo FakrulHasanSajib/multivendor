@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Product extends Model
 {
     use HasFactory;
@@ -12,14 +13,18 @@ class Product extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
+        'vendor_id',      // Added
+        'category_id',    // Added
         'name',
         'slug',
         'description',
         'price',
-        'vendor_id',
+        'discount_price', // Added
+        'stock_qty',      // Added
+        'status',         // Added
     ];
 
     /**
@@ -28,5 +33,29 @@ class Product extends Model
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
+    }
+
+    /**
+     * Get the category that the product belongs to.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get all of the images for the product.
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    /**
+     * Get all of the reviews for the product.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

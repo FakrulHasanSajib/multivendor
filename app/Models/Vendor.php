@@ -14,18 +14,13 @@ class Vendor extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'address',
-    ];
+  protected $fillable = ['user_id', 'shop_name', 'shop_slug', 'address', 'phone', 'status'];
 
-    /**
-     * Get the products for the vendor.
-     */
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
+public function user() {
+    return $this->belongsTo(User::class);
+}
+
+public function products() {
+    return $this->hasMany(Product::class);
+}
 }

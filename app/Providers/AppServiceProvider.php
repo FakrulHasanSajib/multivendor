@@ -3,17 +3,17 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
-
- public function boot(): void
 {
-    $this->routes(function () {
-        Route::middleware('api')
-            ->prefix('api') // <--- এই লাইনটি খুবই গুরুত্বপূর্ণ
-            ->group(base_path('routes/api.php')); // <--- এবং এই লাইনটিও
+    public function register(): void
+    {
+        // ...
+    }
 
-        Route::middleware('web')
-            ->group(base_path('routes/web.php'));
-    });
+    public function boot(): void
+    {
+        Schema::defaultStringLength(191);
+    }
 }
