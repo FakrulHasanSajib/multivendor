@@ -23,6 +23,11 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    public function vendor()
+{
+    // একজন User এর একটি Vendor প্রোফাইল থাকতে পারে।
+    return $this->hasOne(Vendor::class, 'user_id');
+}
 
     /**
      * The attributes that should be hidden for serialization.
